@@ -7,7 +7,7 @@ import me.gerenciar.sdao.annotation.TableName;
 @TableName("SUMMON")
 public class Summon extends Character
 {
-	private static final long serialVersionUID = -7342805184951353427L;
+	private static transient final long serialVersionUID = -7342805184951353427L;
 	
 	private List<SummonSkill> skills;
 	

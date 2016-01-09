@@ -8,7 +8,7 @@ import me.gerenciar.sdao.annotation.TableName;
 @TableName("PLAYER")
 public class Player extends Character
 {
-	private static final long serialVersionUID = 1490945766096913214L;
+	private static transient final long serialVersionUID = 1490945766096913214L;
 	
 	private Account account;
 	private long attributePoints;

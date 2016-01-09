@@ -7,7 +7,7 @@ import me.gerenciar.sjson.gateway.Gateway;
 @TableName("PLAYER_ATTRIBUTES")
 public class PlayerAttributes extends Gateway
 {
-	private static final long serialVersionUID = -1064031796208216819L;
+	private static transient final long serialVersionUID = -1064031796208216819L;
 	
 	@Identifier("ID")
 	private Long id;

@@ -7,7 +7,7 @@ import me.gerenciar.sdao.annotation.TableName;
 @TableName("PLAYER_SKILL")
 public class PlayerSkill extends CharacterSkill
 {
-	private static final long serialVersionUID = -6009222555754753172L;
+	private static transient final long serialVersionUID = -6009222555754753172L;
 	
 	private Long level;
 	private Long maxLevel;

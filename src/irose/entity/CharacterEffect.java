@@ -6,7 +6,7 @@ import me.gerenciar.sjson.gateway.Gateway;
 
 public class CharacterEffect extends Gateway
 {
-	private static final long serialVersionUID = -3950889283531756817L;
+	private static transient final long serialVersionUID = -3950889283531756817L;
 	
 	// non persistent
 	private String duration;

@@ -4,7 +4,7 @@ import me.gerenciar.sjson.gateway.Gateway;
 
 public class Response extends Gateway
 {
-	private static final long serialVersionUID = -8833798379580814828L;
+	private static transient final long serialVersionUID = -8833798379580814828L;
 	
 	public static enum Status
 	{

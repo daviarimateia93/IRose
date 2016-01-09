@@ -4,7 +4,7 @@ import me.gerenciar.sjson.gateway.Gateway;
 
 public class Point extends Gateway
 {
-	private static final long serialVersionUID = 6351514818335154730L;
+	private static transient final long serialVersionUID = 6351514818335154730L;
 	
 	private double x;
 	private double y;

@@ -20,7 +20,7 @@ public class AccountRepository extends MySQLGenericSimpleDAO<Account>
 		bean.setNickname(resultSet.getString("NICKNAME"));
 		bean.setPassword(resultSet.getString("PASSWORD"));
 		bean.setEmail(resultSet.getString("EMAIL"));
-		bean.setLastTimeSeen(resultSet.getDate("LAST_TIME_SEEN"));
+		bean.setLogged(resultSet.getBoolean("LOGGED"));
 		bean.setPlayers(RepositoryManager.get(PlayerRepository.class).selectByAccountId(getCurrentConnection(), bean.getId()));
 	}
 	
@@ -32,7 +32,7 @@ public class AccountRepository extends MySQLGenericSimpleDAO<Account>
 		map.put("NICKNAME", bean.getNickname());
 		map.put("PASSWORD", bean.getPassword());
 		map.put("EMAIL", bean.getEmail());
-		map.put("LAST_TIME_SEEN", bean.getLastTimeSeen());
+		map.put("LOGGED", bean.isLogged());
 		
 		List<Map<String, Object>> maps = new ArrayList<>();
 		maps.add(map);

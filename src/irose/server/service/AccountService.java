@@ -1,7 +1,6 @@
 package irose.server.service;
 
 import java.sql.Connection;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,7 +11,7 @@ import irose.util.Requestable;
 import me.gerenciar.stp.gateway.Peer;
 
 public class AccountService
-{	
+{
 	private static Map<Peer, Account> connectedPeers = new HashMap<>();
 	private static Map<Long, Account> connectedAccounts = new HashMap<>();
 	
@@ -31,6 +30,10 @@ public class AccountService
 				
 				if(account != null)
 				{
+					account.setLogged(true);
+					
+					RepositoryManager.get(AccountRepository.class).update(connection, account);
+					
 					connectedPeers.put(peer, account);
 					connectedAccounts.put(account.getId(), account);
 				}
@@ -64,8 +67,7 @@ public class AccountService
 				RepositoryManager.beginTransaction(connection);
 				
 				Account account = connectedAccounts.remove(accountId);
-				
-				account.setLastTimeSeen(new Date());
+				account.setLogged(false);
 				
 				RepositoryManager.get(AccountRepository.class).update(connection, account);
 				

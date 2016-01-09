@@ -7,50 +7,50 @@ import me.gerenciar.sjson.gateway.Gateway;
 
 public class Request extends Gateway
 {
-	private static final long serialVersionUID = 6277710972013771070L;
+	private static transient final long serialVersionUID = 6277710972013771070L;
 	
-	private String className;
-	private String methodName;
-	private Object[] params;
-	private String[] paramsClassNames;
+	private String requestClassName;
+	private String requestMethodName;
+	private Object[] requestParams;
+	private String[] requestParamsClassNames;
 	
 	public Request()
 	{
 	}
 	
-	public Request(String className, String methodName, Object... params)
+	public Request(String requestClassName, String requestMethodName, Object... requestParams)
 	{
-		this.className = className;
-		this.methodName = methodName;
-		this.params = params;
+		this.requestClassName = requestClassName;
+		this.requestMethodName = requestMethodName;
+		this.requestParams = requestParams;
 		
-		List<String> paramClassNames = new ArrayList<>();
+		List<String> requestParamClassNames = new ArrayList<>();
 		
-		for(Object param : params)
+		for(Object requestParam : requestParams)
 		{
-			paramClassNames.add(param.getClass().getName());
+			requestParamClassNames.add(requestParam.getClass().getName());
 		}
 		
-		this.paramsClassNames = paramClassNames.toArray(new String[paramClassNames.size()]);
+		this.requestParamsClassNames = requestParamClassNames.toArray(new String[requestParamClassNames.size()]);
 	}
 	
-	public String getClassName()
+	public String getRequestClassName()
 	{
-		return className;
+		return requestClassName;
 	}
 	
-	public String getMethodName()
+	public String getRequestMethodName()
 	{
-		return methodName;
+		return requestMethodName;
 	}
 	
-	public Object[] getParams()
+	public Object[] getRequestParams()
 	{
-		return params;
+		return requestParams;
 	}
 	
-	public String[] getParamsClassNames()
+	public String[] getRequestParamsClassNames()
 	{
-		return paramsClassNames;
+		return requestParamsClassNames;
 	}
 }

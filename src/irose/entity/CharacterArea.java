@@ -8,7 +8,7 @@ import me.gerenciar.sjson.gateway.Gateway;
 @TableName("CHARACTER_AREA")
 public class CharacterArea extends Gateway
 {
-	private static final long serialVersionUID = 9061197192568282557L;
+	private static transient final long serialVersionUID = 9061197192568282557L;
 	
 	@Identifier("ID")
 	@Generated("ID")

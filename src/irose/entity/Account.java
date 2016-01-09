@@ -1,7 +1,6 @@
 package irose.entity;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import me.gerenciar.sdao.annotation.Generated;
@@ -13,7 +12,7 @@ import me.gerenciar.stp.gateway.Peer;
 @TableName("ACCOUNT")
 public class Account extends Gateway
 {
-	private static final long serialVersionUID = 712815442503981486L;
+	private static transient final long serialVersionUID = 712815442503981486L;
 	
 	@Identifier("ID")
 	@Generated("ID")
@@ -21,7 +20,7 @@ public class Account extends Gateway
 	private String nickname;
 	private String password;
 	private String email;
-	private Date lastTimeSeen;
+	private boolean logged;
 	private List<Player> players = new ArrayList<>();
 	
 	// non persistent
@@ -67,14 +66,14 @@ public class Account extends Gateway
 		this.email = email;
 	}
 	
-	public Date getLastTimeSeen()
+	public boolean isLogged()
 	{
-		return lastTimeSeen;
+		return logged;
 	}
 	
-	public void setLastTimeSeen(Date lastTimeSeen)
+	public void setLogged(boolean logged)
 	{
-		this.lastTimeSeen = lastTimeSeen;
+		this.logged = logged;
 	}
 	
 	public List<Player> getPlayers()

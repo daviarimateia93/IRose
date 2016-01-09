@@ -7,7 +7,7 @@ import me.gerenciar.sdao.annotation.TableName;
 @TableName("MONSTER")
 public class Monster extends Character
 {
-	private static final long serialVersionUID = -360800265349179884L;
+	private static transient final long serialVersionUID = -360800265349179884L;
 	
 	private List<MonsterSkill> skills;
 	

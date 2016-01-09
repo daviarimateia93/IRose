@@ -33,11 +33,11 @@ public class RequestParser extends Parser
 	{
 		try
 		{
-			Class<?> type = Class.forName(request.getClassName());
+			Class<?> type = Class.forName(request.getRequestClassName());
 			
 			List<Class<?>> paramsClassNames = new ArrayList<>();
 			
-			for(String paramClassName : request.getParamsClassNames())
+			for(String paramClassName : request.getRequestParamsClassNames())
 			{
 				try
 				{
@@ -48,21 +48,21 @@ public class RequestParser extends Parser
 				}
 			}
 			
-			List<Class<?>> paramClassNamesWithPeer = new ArrayList<>();
-			paramClassNamesWithPeer.addAll(paramsClassNames);
-			paramClassNamesWithPeer.add(peer.getClass());
+			List<Class<?>> requestParamClassNamesWithPeer = new ArrayList<>();
+			requestParamClassNamesWithPeer.addAll(paramsClassNames);
+			requestParamClassNamesWithPeer.add(peer.getClass());
 			
-			Method methodWithPeer = getMethod(type, request.getMethodName(), paramClassNamesWithPeer.toArray(new Class<?>[paramClassNamesWithPeer.size()]));
-			Method method = getMethod(type, request.getMethodName(), paramsClassNames.toArray(new Class<?>[paramsClassNames.size()]));
+			Method methodWithPeer = getMethod(type, request.getRequestMethodName(), requestParamClassNamesWithPeer.toArray(new Class<?>[requestParamClassNamesWithPeer.size()]));
+			Method method = getMethod(type, request.getRequestMethodName(), paramsClassNames.toArray(new Class<?>[paramsClassNames.size()]));
 			
 			Method invokeMethod = methodWithPeer != null ? methodWithPeer : method;
 			
-			List<Object> paramsWithPeer = new ArrayList<>(Arrays.asList(request.getParams()));
-			paramsWithPeer.add(peer);
+			List<Object> requestParamsWithPeer = new ArrayList<>(Arrays.asList(request.getRequestParams()));
+			requestParamsWithPeer.add(peer);
 			
 			if(invokeMethod.isAnnotationPresent(Requestable.class))
 			{
-				ServerResponseParser.getInstance().write(peer, new Response(Response.Status.OK, methodWithPeer != null ? methodWithPeer.invoke(ServiceManager.get(type), paramsWithPeer.toArray(new Object[paramsWithPeer.size()])) : method.invoke(ServiceManager.get(type), request.getParams())));
+				ServerResponseParser.getInstance().write(peer, new Response(Response.Status.OK, methodWithPeer != null ? methodWithPeer.invoke(ServiceManager.get(type), requestParamsWithPeer.toArray(new Object[requestParamsWithPeer.size()])) : method.invoke(ServiceManager.get(type), request.getRequestParams())));
 			}
 			else
 			{

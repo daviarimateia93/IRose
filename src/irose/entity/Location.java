@@ -8,7 +8,7 @@ import me.gerenciar.sjson.gateway.Gateway;
 @TableName("LOCATION")
 public class Location extends Gateway
 {
-	private static final long serialVersionUID = 1783681274525045728L;
+	private static transient final long serialVersionUID = 1783681274525045728L;
 	
 	@Identifier("ID")
 	private Long id;

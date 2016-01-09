@@ -10,7 +10,7 @@ import me.gerenciar.sjson.gateway.Gateway;
 @TableName("PLAYER_SKILL_PLAYER_SKILL_REQUERIMENT")
 public class PlayerSkillPlayerSkillRequeriment extends Gateway
 {
-	private static final long serialVersionUID = -1904185884922673375L;
+	private static transient final long serialVersionUID = -1904185884922673375L;
 	
 	@Identifier("ID_PLAYER_SKILL")
 	@Group("ID_PLAYER_SKILL")
