@@ -1,6 +1,5 @@
 package irose.server.service;
 
-import java.sql.Connection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,6 +7,8 @@ import irose.entity.Account;
 import irose.repository.AccountRepository;
 import irose.util.RepositoryManager;
 import irose.util.Requestable;
+import me.gerenciar.sdao.factory.DAOFactory.Runnable;
+import me.gerenciar.sdao.factory.DAOFactory.Wrapper;
 import me.gerenciar.stp.gateway.Peer;
 
 public class AccountService
@@ -18,66 +19,51 @@ public class AccountService
 	@Requestable
 	public Account login(String nickname, String password, Peer peer)
 	{
-		if(getByPeer(peer) == null)
+		Wrapper<Account> wrapper = new Wrapper<>();
+		
+		RepositoryManager.getDAOFactory().transactional(new Runnable<Account>(wrapper)
 		{
-			Connection connection = RepositoryManager.newConnection();
-			
-			try
+			@Override
+			public void run() throws Exception
 			{
-				RepositoryManager.beginTransaction(connection);
-				
-				Account account = RepositoryManager.get(AccountRepository.class).selectByNicknameAndPassword(connection, nickname, password);
-				
-				if(account != null)
+				if(getByPeer(peer) == null)
 				{
-					account.setLogged(true);
+					wrapper.set(RepositoryManager.get(AccountRepository.class).selectByNicknameAndPassword(RepositoryManager.getDAOFactory().getConnection(), nickname, password));
 					
-					RepositoryManager.get(AccountRepository.class).update(connection, account);
+					if(wrapper.get() != null)
+					{
+						wrapper.get().setLogged(true);
+						
+						RepositoryManager.get(AccountRepository.class).update(RepositoryManager.getDAOFactory().getConnection(), wrapper.get());
+						
+						connectedPeers.put(peer, wrapper.get());
+						connectedAccounts.put(wrapper.get().getId(), wrapper.get());
+					}
 					
-					connectedPeers.put(peer, account);
-					connectedAccounts.put(account.getId(), account);
 				}
-				
-				RepositoryManager.commit(connection);
-				
-				return account;
 			}
-			catch(Exception exception)
-			{
-				RepositoryManager.rollback(connection);
-				
-				return null;
-			}
-		}
-		else
-		{
-			return null;
-		}
+		});
+		
+		return wrapper.get();
 	}
 	
 	@Requestable
 	public void logout(Long accountId, Peer peer)
 	{
-		if(connectedAccounts.containsKey(accountId) && check(peer, accountId))
+		RepositoryManager.getDAOFactory().transactional(new Runnable<Object>()
 		{
-			Connection connection = RepositoryManager.newConnection();
-			
-			try
+			@Override
+			public void run() throws Exception
 			{
-				RepositoryManager.beginTransaction(connection);
-				
-				Account account = connectedAccounts.remove(accountId);
-				account.setLogged(false);
-				
-				RepositoryManager.get(AccountRepository.class).update(connection, account);
-				
-				RepositoryManager.commit(connection);
+				if(connectedAccounts.containsKey(accountId) && check(peer, accountId))
+				{
+					Account account = connectedAccounts.remove(accountId);
+					account.setLogged(false);
+					
+					RepositoryManager.get(AccountRepository.class).update(RepositoryManager.getDAOFactory().getConnection(), account);
+				}
 			}
-			catch(Exception exception)
-			{
-				RepositoryManager.rollback(connection);
-			}
-		}
+		});
 	}
 	
 	@Requestable

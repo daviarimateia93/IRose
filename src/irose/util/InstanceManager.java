@@ -7,6 +7,11 @@ public class InstanceManager
 {
 	protected static Map<String, Object> instances = new HashMap<>();
 	
+	protected InstanceManager()
+	{
+	
+	}
+	
 	@SuppressWarnings("unchecked")
 	protected static <T> T get(Class<T> type, String packageEndingName)
 	{
