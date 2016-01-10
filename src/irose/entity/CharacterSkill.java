@@ -1,5 +1,6 @@
 package irose.entity;
 
+import me.gerenciar.sdao.annotation.Generated;
 import me.gerenciar.sdao.annotation.Identifier;
 import me.gerenciar.sdao.annotation.TableName;
 import me.gerenciar.sjson.gateway.Gateway;
@@ -10,15 +11,16 @@ public class CharacterSkill extends Gateway
 	private static transient final long serialVersionUID = -7875118954969791477L;
 	
 	@Identifier("ID")
+	@Generated("ID")
 	private Long id;
 	private CharacterSkillRange range;
 	private CharacterSkillCategory category;
 	private CharacterSkillType type;
-	private long duration;
-	private long countDown;
-	private long value;
-	private double valuePercent;
-	private long mp;
+	private int duration;
+	private int countDown;
+	private int value;
+	private float valuePercent;
+	private int mp;
 	
 	public Long getId()
 	{
@@ -60,52 +62,52 @@ public class CharacterSkill extends Gateway
 		this.type = type;
 	}
 	
-	public long getDuration()
+	public int getDuration()
 	{
 		return duration;
 	}
 	
-	public void setDuration(long duration)
+	public void setDuration(int duration)
 	{
 		this.duration = duration;
 	}
 	
-	public long getCountDown()
+	public int getCountDown()
 	{
 		return countDown;
 	}
 	
-	public void setCountDown(long countDown)
+	public void setCountDown(int countDown)
 	{
 		this.countDown = countDown;
 	}
 	
-	public long getValue()
+	public int getValue()
 	{
 		return value;
 	}
 	
-	public void setValue(long value)
+	public void setValue(int value)
 	{
 		this.value = value;
 	}
 	
-	public double getValuePercent()
+	public float getValuePercent()
 	{
 		return valuePercent;
 	}
 	
-	public void setValuePercent(double valuePercent)
+	public void setValuePercent(float valuePercent)
 	{
 		this.valuePercent = valuePercent;
 	}
 	
-	public long getMp()
+	public int getMp()
 	{
 		return mp;
 	}
 	
-	public void setMp(long mp)
+	public void setMp(int mp)
 	{
 		this.mp = mp;
 	}

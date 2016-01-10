@@ -14,7 +14,7 @@ public class CharacterArea extends Gateway
 	@Generated("ID")
 	private Long id;
 	private Location location;
-	private long radius;
+	private double radius;
 	
 	public Long getId()
 	{
@@ -36,12 +36,12 @@ public class CharacterArea extends Gateway
 		this.location = location;
 	}
 	
-	public long getRadius()
+	public double getRadius()
 	{
 		return radius;
 	}
 	
-	public void setRadius(long radius)
+	public void setRadius(double radius)
 	{
 		this.radius = radius;
 	}

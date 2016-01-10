@@ -15,12 +15,12 @@ public class PlayerAttributesRepository extends MySQLGenericSimpleDAO<PlayerAttr
 	protected void parseBean(ResultSet resultSet, PlayerAttributes bean) throws Exception
 	{
 		bean.setId(resultSet.getLong("ID"));
-		bean.setStrength(resultSet.getLong("STRENGTH"));
-		bean.setDexterity(resultSet.getLong("DEXTERITY"));
-		bean.setIntelligence(resultSet.getLong("INTELLIGENCE"));
-		bean.setConcentration(resultSet.getLong("CONCENTRATION"));
-		bean.setCharm(resultSet.getLong("CHARM"));
-		bean.setSense(resultSet.getLong("SENSE"));
+		bean.setStrength(resultSet.getInt("STRENGTH"));
+		bean.setDexterity(resultSet.getInt("DEXTERITY"));
+		bean.setIntelligence(resultSet.getInt("INTELLIGENCE"));
+		bean.setConcentration(resultSet.getInt("CONCENTRATION"));
+		bean.setCharm(resultSet.getInt("CHARM"));
+		bean.setSense(resultSet.getInt("SENSE"));
 	}
 	
 	@Override

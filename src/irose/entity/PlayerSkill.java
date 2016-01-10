@@ -9,37 +9,37 @@ public class PlayerSkill extends CharacterSkill
 {
 	private static transient final long serialVersionUID = -6009222555754753172L;
 	
-	private Long level;
-	private Long maxLevel;
-	private Long skillPoints;
+	private int level;
+	private int maxLevel;
+	private int skillPoints;
 	private List<PlayerSkillRequeriment> requeriments;
 	
-	public Long getLevel()
+	public int getLevel()
 	{
 		return level;
 	}
 	
-	public void setLevel(Long level)
+	public void setLevel(int level)
 	{
 		this.level = level;
 	}
 	
-	public Long getMaxLevel()
+	public int getMaxLevel()
 	{
 		return maxLevel;
 	}
 	
-	public void setMaxLevel(Long maxLevel)
+	public void setMaxLevel(int maxLevel)
 	{
 		this.maxLevel = maxLevel;
 	}
 	
-	public Long getSkillPoints()
+	public int getSkillPoints()
 	{
 		return skillPoints;
 	}
 	
-	public void setSkillPoints(Long skillPoints)
+	public void setSkillPoints(int skillPoints)
 	{
 		this.skillPoints = skillPoints;
 	}

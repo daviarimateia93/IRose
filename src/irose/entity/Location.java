@@ -1,6 +1,7 @@
 package irose.entity;
 
 import irose.util.Point;
+import me.gerenciar.sdao.annotation.Generated;
 import me.gerenciar.sdao.annotation.Identifier;
 import me.gerenciar.sdao.annotation.TableName;
 import me.gerenciar.sjson.gateway.Gateway;
@@ -11,6 +12,7 @@ public class Location extends Gateway
 	private static transient final long serialVersionUID = 1783681274525045728L;
 	
 	@Identifier("ID")
+	@Generated("ID")
 	private Long id;
 	private Point point;
 	private Map map;

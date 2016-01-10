@@ -19,10 +19,10 @@ public class Character extends Gateway
 	private Long id;
 	private String name;
 	private Location savedLocation;
-	private long hp;
-	private long mp;
-	private long weight;
-	private long sp;
+	private int hp;
+	private int mp;
+	private int weight;
+	private int sp;
 	private float hpRecovery;
 	private float mpRecovery;
 	private CharacterStats stats;
@@ -94,42 +94,42 @@ public class Character extends Gateway
 		this.savedLocation = savedLocation;
 	}
 	
-	public long getHp()
+	public int getHp()
 	{
 		return hp;
 	}
 	
-	public void setHp(long hp)
+	public void setHp(int hp)
 	{
 		this.hp = hp;
 	}
 	
-	public long getMp()
+	public int getMp()
 	{
 		return mp;
 	}
 	
-	public void setMp(long mp)
+	public void setMp(int mp)
 	{
 		this.mp = mp;
 	}
 	
-	public long getWeight()
+	public int getWeight()
 	{
 		return weight;
 	}
 	
-	public void setWeight(long weight)
+	public void setWeight(int weight)
 	{
 		this.weight = weight;
 	}
 	
-	public long getSp()
+	public int getSp()
 	{
 		return sp;
 	}
 	
-	public void setSp(long sp)
+	public void setSp(int sp)
 	{
 		this.sp = sp;
 	}

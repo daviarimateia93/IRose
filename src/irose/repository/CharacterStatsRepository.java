@@ -15,18 +15,18 @@ public class CharacterStatsRepository extends MySQLGenericSimpleDAO<CharacterSta
 	protected void parseBean(ResultSet resultSet, CharacterStats bean) throws Exception
 	{
 		bean.setId(resultSet.getLong("ID"));
-		bean.setHpLimit(resultSet.getLong("HP_LIMIT"));
-		bean.setMpLimit(resultSet.getLong("MP_LIMIT"));
-		bean.setWeightLimit(resultSet.getLong("WEIGHT_LIMIT"));
-		bean.setSpLimit(resultSet.getLong("SP_LIMIT"));
-		bean.setAttack(resultSet.getLong("ATTACK"));
-		bean.setDefense(resultSet.getLong("DEFENSE"));
-		bean.setAccuracy(resultSet.getLong("ACCURACY"));
-		bean.setMagicDefense(resultSet.getLong("MAGIC_DEFENSE"));
-		bean.setDodge(resultSet.getLong("DODGE"));
-		bean.setMovementSpeed(resultSet.getLong("MOVEMENT_SPEED"));
-		bean.setAttackSpeed(resultSet.getLong("ATTACK_SPEED"));
-		bean.setCritical(resultSet.getLong("CRITICAL"));
+		bean.setHpLimit(resultSet.getInt("HP_LIMIT"));
+		bean.setMpLimit(resultSet.getInt("MP_LIMIT"));
+		bean.setWeightLimit(resultSet.getInt("WEIGHT_LIMIT"));
+		bean.setSpLimit(resultSet.getInt("SP_LIMIT"));
+		bean.setAttack(resultSet.getInt("ATTACK"));
+		bean.setDefense(resultSet.getInt("DEFENSE"));
+		bean.setAccuracy(resultSet.getInt("ACCURACY"));
+		bean.setMagicDefense(resultSet.getInt("MAGIC_DEFENSE"));
+		bean.setDodge(resultSet.getInt("DODGE"));
+		bean.setMovementSpeed(resultSet.getInt("MOVEMENT_SPEED"));
+		bean.setAttackSpeed(resultSet.getInt("ATTACK_SPEED"));
+		bean.setCritical(resultSet.getInt("CRITICAL"));
 	}
 	
 	@Override

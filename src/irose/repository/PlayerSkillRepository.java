@@ -21,9 +21,9 @@ public class PlayerSkillRepository extends MySQLGenericSimpleDAO<PlayerSkill>
 	protected void parseBean(ResultSet resultSet, PlayerSkill bean) throws Exception
 	{
 		bean.setId(resultSet.getLong("ID"));
-		bean.setLevel(resultSet.getLong("LEVEL"));
-		bean.setMaxLevel(resultSet.getLong("MAX_LEVEL"));
-		bean.setSkillPoints(resultSet.getLong("SKILL_POINTS"));
+		bean.setLevel(resultSet.getInt("LEVEL"));
+		bean.setMaxLevel(resultSet.getInt("MAX_LEVEL"));
+		bean.setSkillPoints(resultSet.getInt("SKILL_POINTS"));
 		bean.setRequeriments(RepositoryManager.get(PlayerSkillRequerimentRepository.class).selectByPlayerSkillId(getCurrentConnection(), bean.getId()));
 		
 		RepositoryManager.get(CharacterSkillRepository.class).parseBean(RepositoryManager.get(CharacterSkillRepository.class).selectOneAsResultSet(getCurrentConnection(), bean.getId()), bean);

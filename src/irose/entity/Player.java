@@ -11,8 +11,8 @@ public class Player extends Character
 	private static transient final long serialVersionUID = 1490945766096913214L;
 	
 	private Account account;
-	private long attributePoints;
-	private long skillPoints;
+	private int attributePoints;
+	private int skillPoints;
 	private CharacterArea respawn;
 	private PlayerAttributes attributes;
 	private List<PlayerSkill> skills = new ArrayList<>();
@@ -47,22 +47,22 @@ public class Player extends Character
 		this.account = account;
 	}
 	
-	public long getAttributePoints()
+	public int getAttributePoints()
 	{
 		return attributePoints;
 	}
 	
-	public void setAttributePoints(long attributePoints)
+	public void setAttributePoints(int attributePoints)
 	{
 		this.attributePoints = attributePoints;
 	}
 	
-	public long getSkillPoints()
+	public int getSkillPoints()
 	{
 		return skillPoints;
 	}
 	
-	public void setSkillPoints(long skillPoints)
+	public void setSkillPoints(int skillPoints)
 	{
 		this.skillPoints = skillPoints;
 	}

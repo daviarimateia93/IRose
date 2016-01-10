@@ -1,5 +1,6 @@
 package irose.entity;
 
+import me.gerenciar.sdao.annotation.Generated;
 import me.gerenciar.sdao.annotation.Identifier;
 import me.gerenciar.sdao.annotation.TableName;
 import me.gerenciar.sjson.gateway.Gateway;
@@ -10,19 +11,20 @@ public class CharacterStats extends Gateway
 	private static transient final long serialVersionUID = -4708186494066603226L;
 	
 	@Identifier("ID")
+	@Generated("ID")
 	private Long id;
-	private long hpLimit;
-	private long mpLimit;
-	private long weightLimit;
-	private long spLimit;
-	private long attack;
-	private long defense;
-	private long accuracy;
-	private long magicDefense;
-	private long dodge;
-	private long movementSpeed;
-	private long attackSpeed;
-	private long critical;
+	private int hpLimit;
+	private int mpLimit;
+	private int weightLimit;
+	private int spLimit;
+	private int attack;
+	private int defense;
+	private int accuracy;
+	private int magicDefense;
+	private int dodge;
+	private int movementSpeed;
+	private int attackSpeed;
+	private int critical;
 	
 	public Long getId()
 	{
@@ -34,122 +36,122 @@ public class CharacterStats extends Gateway
 		this.id = id;
 	}
 	
-	public long getHpLimit()
+	public int getHpLimit()
 	{
 		return hpLimit;
 	}
 	
-	public void setHpLimit(long hpLimit)
+	public void setHpLimit(int hpLimit)
 	{
 		this.hpLimit = hpLimit;
 	}
 	
-	public long getMpLimit()
+	public int getMpLimit()
 	{
 		return mpLimit;
 	}
 	
-	public void setMpLimit(long mpLimit)
+	public void setMpLimit(int mpLimit)
 	{
 		this.mpLimit = mpLimit;
 	}
 	
-	public long getWeightLimit()
+	public int getWeightLimit()
 	{
 		return weightLimit;
 	}
 	
-	public void setWeightLimit(long weightLimit)
+	public void setWeightLimit(int weightLimit)
 	{
 		this.weightLimit = weightLimit;
 	}
 	
-	public long getSpLimit()
+	public int getSpLimit()
 	{
 		return spLimit;
 	}
 	
-	public void setSpLimit(long spLimit)
+	public void setSpLimit(int spLimit)
 	{
 		this.spLimit = spLimit;
 	}
 	
-	public long getAttack()
+	public int getAttack()
 	{
 		return attack;
 	}
 	
-	public void setAttack(long attack)
+	public void setAttack(int attack)
 	{
 		this.attack = attack;
 	}
 	
-	public long getDefense()
+	public int getDefense()
 	{
 		return defense;
 	}
 	
-	public void setDefense(long defense)
+	public void setDefense(int defense)
 	{
 		this.defense = defense;
 	}
 	
-	public long getAccuracy()
+	public int getAccuracy()
 	{
 		return accuracy;
 	}
 	
-	public void setAccuracy(long accuracy)
+	public void setAccuracy(int accuracy)
 	{
 		this.accuracy = accuracy;
 	}
 	
-	public long getMagicDefense()
+	public int getMagicDefense()
 	{
 		return magicDefense;
 	}
 	
-	public void setMagicDefense(long magicDefense)
+	public void setMagicDefense(int magicDefense)
 	{
 		this.magicDefense = magicDefense;
 	}
 	
-	public long getDodge()
+	public int getDodge()
 	{
 		return dodge;
 	}
 	
-	public void setDodge(long dodge)
+	public void setDodge(int dodge)
 	{
 		this.dodge = dodge;
 	}
 	
-	public long getMovementSpeed()
+	public int getMovementSpeed()
 	{
 		return movementSpeed;
 	}
 	
-	public void setMovementSpeed(long movementSpeed)
+	public void setMovementSpeed(int movementSpeed)
 	{
 		this.movementSpeed = movementSpeed;
 	}
 	
-	public long getAttackSpeed()
+	public int getAttackSpeed()
 	{
 		return attackSpeed;
 	}
 	
-	public void setAttackSpeed(long attackSpeed)
+	public void setAttackSpeed(int attackSpeed)
 	{
 		this.attackSpeed = attackSpeed;
 	}
 	
-	public long getCritical()
+	public int getCritical()
 	{
 		return critical;
 	}
 	
-	public void setCritical(long critical)
+	public void setCritical(int critical)
 	{
 		this.critical = critical;
 	}

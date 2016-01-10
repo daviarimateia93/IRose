@@ -21,11 +21,11 @@ public class CharacterSkillRepository extends MySQLGenericSimpleDAO<CharacterSki
 		bean.setRange(CharacterSkillRange.valueOf(resultSet.getString("RANGE")));
 		bean.setCategory(CharacterSkillCategory.valueOf(resultSet.getString("CATEGORY")));
 		bean.setType(CharacterSkillType.valueOf(resultSet.getString("TYPE")));
-		bean.setDuration(resultSet.getLong("DURATION"));
-		bean.setCountDown(resultSet.getLong("COUNT_DOWN"));
-		bean.setValue(resultSet.getLong("VALUE"));
-		bean.setValuePercent(resultSet.getLong("VALUE_PERCENT"));
-		bean.setMp(resultSet.getLong("MP"));
+		bean.setDuration(resultSet.getInt("DURATION"));
+		bean.setCountDown(resultSet.getInt("COUNT_DOWN"));
+		bean.setValue(resultSet.getInt("VALUE"));
+		bean.setValuePercent(resultSet.getInt("VALUE_PERCENT"));
+		bean.setMp(resultSet.getInt("MP"));
 	}
 	
 	@Override

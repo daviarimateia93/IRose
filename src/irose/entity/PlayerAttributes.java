@@ -1,5 +1,6 @@
 package irose.entity;
 
+import me.gerenciar.sdao.annotation.Generated;
 import me.gerenciar.sdao.annotation.Identifier;
 import me.gerenciar.sdao.annotation.TableName;
 import me.gerenciar.sjson.gateway.Gateway;
@@ -10,13 +11,14 @@ public class PlayerAttributes extends Gateway
 	private static transient final long serialVersionUID = -1064031796208216819L;
 	
 	@Identifier("ID")
+	@Generated("ID")
 	private Long id;
-	private long strength;
-	private long dexterity;
-	private long intelligence;
-	private long concentration;
-	private long charm;
-	private long sense;
+	private int strength;
+	private int dexterity;
+	private int intelligence;
+	private int concentration;
+	private int charm;
+	private int sense;
 	
 	public Long getId()
 	{
@@ -28,62 +30,62 @@ public class PlayerAttributes extends Gateway
 		this.id = id;
 	}
 	
-	public long getStrength()
+	public int getStrength()
 	{
 		return strength;
 	}
 	
-	public void setStrength(long strength)
+	public void setStrength(int strength)
 	{
 		this.strength = strength;
 	}
 	
-	public long getDexterity()
+	public int getDexterity()
 	{
 		return dexterity;
 	}
 	
-	public void setDexterity(long dexterity)
+	public void setDexterity(int dexterity)
 	{
 		this.dexterity = dexterity;
 	}
 	
-	public long getIntelligence()
+	public int getIntelligence()
 	{
 		return intelligence;
 	}
 	
-	public void setIntelligence(long intelligence)
+	public void setIntelligence(int intelligence)
 	{
 		this.intelligence = intelligence;
 	}
 	
-	public long getConcentration()
+	public int getConcentration()
 	{
 		return concentration;
 	}
 	
-	public void setConcentration(long concentration)
+	public void setConcentration(int concentration)
 	{
 		this.concentration = concentration;
 	}
 	
-	public long getCharm()
+	public int getCharm()
 	{
 		return charm;
 	}
 	
-	public void setCharm(long charm)
+	public void setCharm(int charm)
 	{
 		this.charm = charm;
 	}
 	
-	public long getSense()
+	public int getSense()
 	{
 		return sense;
 	}
 	
-	public void setSense(long sense)
+	public void setSense(int sense)
 	{
 		this.sense = sense;
 	}

@@ -12,14 +12,14 @@ import irose.util.RepositoryManager;
 import me.gerenciar.sdao.dao.jdbc.mysql.MySQLGenericSimpleDAO;
 
 public class PlayerRepository extends MySQLGenericSimpleDAO<Player>
-{	
+{
 	@Override
 	protected void parseBean(ResultSet resultSet, Player bean) throws Exception
 	{
 		bean.setId(resultSet.getLong("ID"));
 		bean.setAccount(RepositoryManager.get(AccountRepository.class).selectOne(getCurrentConnection(), resultSet.getLong("ID_ACCOUNT")));
-		bean.setAttributePoints(resultSet.getLong("ATTRIBUTES_POINTS"));
-		bean.setSkillPoints(resultSet.getLong("SKILL_POINTS"));
+		bean.setAttributePoints(resultSet.getInt("ATTRIBUTES_POINTS"));
+		bean.setSkillPoints(resultSet.getInt("SKILL_POINTS"));
 		bean.setRespawn(RepositoryManager.get(CharacterAreaRepository.class).selectOne(getCurrentConnection(), resultSet.getLong("ID_PLAYER_RESPAWN")));
 		bean.setAttributes(RepositoryManager.get(PlayerAttributesRepository.class).selectOne(getCurrentConnection(), resultSet.getLong("ID_PLAYER_ATTRIBUTES")));
 		bean.setExtraXpRate(resultSet.getFloat("EXTRA_XP_RATE"));

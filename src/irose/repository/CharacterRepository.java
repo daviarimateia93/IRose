@@ -21,10 +21,10 @@ public class CharacterRepository extends MySQLGenericSimpleDAO<Character>
 		bean.setId(resultSet.getLong("ID"));
 		bean.setName(resultSet.getString("NAME"));
 		bean.setSavedLocation(RepositoryManager.get(LocationRepository.class).selectOne(getCurrentConnection(), resultSet.getLong("ID_LOCATION")));
-		bean.setHp(resultSet.getLong("HP"));
-		bean.setMp(resultSet.getLong("MP"));
-		bean.setWeight(resultSet.getLong("WEIGHT"));
-		bean.setSp(resultSet.getLong("SP"));
+		bean.setHp(resultSet.getInt("HP"));
+		bean.setMp(resultSet.getInt("MP"));
+		bean.setWeight(resultSet.getInt("WEIGHT"));
+		bean.setSp(resultSet.getInt("SP"));
 		bean.setHpRecovery(resultSet.getFloat("HP_RECOVERY"));
 		bean.setMpRecovery(resultSet.getFloat("MP_RECOVERY"));
 		bean.setStats(RepositoryManager.get(CharacterStatsRepository.class).selectOne(getCurrentConnection(), resultSet.getLong("ID_CHARACTER_STATS")));

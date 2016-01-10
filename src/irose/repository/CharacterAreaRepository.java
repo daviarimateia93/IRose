@@ -17,7 +17,7 @@ public class CharacterAreaRepository extends MySQLGenericSimpleDAO<CharacterArea
 	{
 		bean.setId(resultSet.getLong("ID"));
 		bean.setLocation(RepositoryManager.get(LocationRepository.class).selectOne(getCurrentConnection(), resultSet.getLong("ID_LOCATION")));
-		bean.setRadius(resultSet.getLong("RADIUS"));
+		bean.setRadius(resultSet.getDouble("RADIUS"));
 	}
 	
 	@Override

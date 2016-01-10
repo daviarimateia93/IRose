@@ -7,14 +7,14 @@ public class PlayerSkillRequeriment extends PlayerSkill
 {
 	private static transient final long serialVersionUID = -1505639894211748211L;
 	
-	private Long minLevel;
+	private int minLevel;
 	
-	public Long getMinLevel()
+	public int getMinLevel()
 	{
 		return minLevel;
 	}
 	
-	public void setMinLevel(Long minLevel)
+	public void setMinLevel(int minLevel)
 	{
 		this.minLevel = minLevel;
 	}
