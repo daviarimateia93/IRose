@@ -2,7 +2,7 @@ package irose.util;
 
 public class ServiceManager extends InstanceManager
 {
-	protected ServiceManager()
+	private ServiceManager()
 	{
 		super();
 	}
