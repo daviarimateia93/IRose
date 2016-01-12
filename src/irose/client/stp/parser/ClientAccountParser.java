@@ -2,6 +2,7 @@ package irose.client.stp.parser;
 
 import irose.util.BaseParser;
 import irose.util.Request;
+import irose.util.Response;
 import me.gerenciar.stp.gateway.Peer;
 import me.gerenciar.stp.parser.ParserPeerKnown;
 
@@ -23,5 +24,12 @@ public class ClientAccountParser extends BaseParser implements ParserPeerKnown
 	public void onPeerEnd(Peer peer)
 	{
 	
+	}
+	
+	@Override
+	protected void read(Peer peer, Response response)
+	{
+		System.out.println("READ");
+		System.out.println(response);
 	}
 }

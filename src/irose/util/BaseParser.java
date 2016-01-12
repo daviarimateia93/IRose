@@ -20,6 +20,19 @@ import me.gerenciar.stp.system.STPLogger;
 
 public abstract class BaseParser extends Parser
 {
+	private static Writer writer = new Writer();
+	private static Reader reader = new Reader();
+	
+	protected Writer getWriter()
+	{
+		return writer;
+	}
+	
+	protected Reader getReader()
+	{
+		return reader;
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	protected void read(Peer peer, Message message)
@@ -46,18 +59,24 @@ public abstract class BaseParser extends Parser
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void written(Peer peer, Message message)
 	{
-		Request request = convert(Request.class, message);
-		Response response = convert(Response.class, message);
+		Json json = convert(Json.class, message);
+		Map<String, Object> rootMap = (Map<String, Object>) json.get("ROOT");
+		String className = ((String) rootMap.get("__className__")).split("\\;")[1];
 		
-		if(request != null)
+		if(className.endsWith("Request"))
 		{
+			Request request = convert(Request.class, message);
+			
 			written(peer, request);
 		}
-		else if(response != null)
+		else if(className.endsWith("Response"))
 		{
+			Response response = convert(Response.class, message);
+			
 			written(peer, response);
 		}
 	}
@@ -115,7 +134,7 @@ public abstract class BaseParser extends Parser
 	
 	protected void write(Peer peer, Object object)
 	{
-		byte[] payloadContent = new Writer().write(object).getBytes();
+		byte[] payloadContent = getWriter().write(object).getBytes();
 		
 		Payload payload = new Payload();
 		payload.setContent(payloadContent);
@@ -139,7 +158,7 @@ public abstract class BaseParser extends Parser
 	
 	private <T> T convert(Class<T> type, Message message)
 	{
-		return new Reader().read(type, new String(message.getPayload().getContent(), Charset.forName(Constants.TEXT_CHARSET_UTF_8)));
+		return getReader().read(type, new String(message.getPayload().getContent(), Charset.forName(Constants.TEXT_CHARSET_UTF_8)));
 	}
 	
 	private Method getMethod(Class<?> type, String methodName, Class<?>[] parameterTypes)

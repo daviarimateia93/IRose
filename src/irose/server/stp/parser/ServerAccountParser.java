@@ -49,6 +49,7 @@ public class ServerAccountParser extends BaseParser implements ParserServerKnown
 	@Override
 	protected void written(Peer peer, Response response)
 	{
+		System.out.println("WRITTEN");
 		System.out.println(response);
 	}
 }

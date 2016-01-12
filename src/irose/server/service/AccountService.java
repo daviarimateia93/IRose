@@ -36,6 +36,7 @@ public class AccountService
 					if(wrapper.get() != null)
 					{
 						wrapper.get().setLogged(true);
+						wrapper.get().setPeer(peer);
 						
 						RepositoryManager.get(AccountRepository.class).update(RepositoryManager.getDAOFactory().getConnection(), wrapper.get());
 						

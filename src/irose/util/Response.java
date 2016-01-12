@@ -6,7 +6,6 @@ public class Response extends BaseEntity
 	
 	public static enum Status
 	{
-		
 		OK, ERROR
 	}
 	
@@ -15,7 +14,7 @@ public class Response extends BaseEntity
 	
 	public Response()
 	{
-		
+	
 	}
 	
 	public Response(Status status, Object payload)
@@ -33,18 +32,4 @@ public class Response extends BaseEntity
 	{
 		return payload;
 	}
-	
-	/*
-	@Override
-	public <T extends BaseEntity> T toObject(String source)
-	{
-		T object = super.toObject(source);
-		
-		if(object instanceof Response)
-		{
-			return ((Response) object).className.equals(className) ? object : null;
-		}
-		
-		return null;
-	}*/
 }

@@ -24,7 +24,7 @@ public class Account extends BaseEntity
 	private List<Player> players = new ArrayList<>();
 	
 	// non persistent
-	private Peer peer;
+	private transient Peer peer;
 	
 	public Long getId()
 	{
