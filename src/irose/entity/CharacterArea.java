@@ -1,12 +1,12 @@
 package irose.entity;
 
+import irose.util.BaseEntity;
 import me.gerenciar.sdao.annotation.Generated;
 import me.gerenciar.sdao.annotation.Identifier;
 import me.gerenciar.sdao.annotation.TableName;
-import me.gerenciar.sjson.gateway.Gateway;
 
 @TableName("CHARACTER_AREA")
-public class CharacterArea extends Gateway
+public class CharacterArea extends BaseEntity
 {
 	private static transient final long serialVersionUID = 9061197192568282557L;
 	

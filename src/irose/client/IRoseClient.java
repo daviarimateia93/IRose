@@ -1,11 +1,6 @@
 package irose.client;
 
-import irose.client.service.AccountService;
-import irose.client.stp.parser.ClientRequestParser;
-import irose.client.stp.parser.ClientResponseParser;
-import irose.util.Request;
-import irose.util.Response;
-import irose.util.ServiceManager;
+import irose.client.stp.parser.ClientAccountParser;
 import me.gerenciar.stp.gateway.Peer;
 import me.gerenciar.stp.parser.ParserManager;
 import me.gerenciar.stp.system.STPException;
@@ -18,8 +13,7 @@ public class IRoseClient
 	
 	private IRoseClient()
 	{
-		ParserManager.getInstance().add(ClientRequestParser.getInstance());
-		ParserManager.getInstance().add(ClientResponseParser.getInstance());
+		ParserManager.getInstance().add(new ClientAccountParser());
 		
 		peer = new Peer()
 		{
@@ -27,8 +21,6 @@ public class IRoseClient
 			protected void onStart()
 			{
 				started = true;
-				
-				ServiceManager.get(AccountService.class).login("teste", "123");
 			}
 			
 			@Override
@@ -67,22 +59,6 @@ public class IRoseClient
 		if(started)
 		{
 			peer.end();
-		}
-	}
-	
-	public void write(Request request)
-	{
-		if(started)
-		{
-			ClientRequestParser.getInstance().write(peer, request);
-		}
-	}
-	
-	public void write(Response response)
-	{
-		if(started)
-		{
-			ClientResponseParser.getInstance().write(peer, response);
 		}
 	}
 }

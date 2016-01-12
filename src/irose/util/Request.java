@@ -3,9 +3,7 @@ package irose.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.gerenciar.sjson.gateway.Gateway;
-
-public class Request extends Gateway
+public class Request extends BaseEntity
 {
 	private static transient final long serialVersionUID = 6277710972013771070L;
 	
@@ -16,6 +14,7 @@ public class Request extends Gateway
 	
 	public Request()
 	{
+		
 	}
 	
 	public Request(String requestClassName, String requestMethodName, Object... requestParams)
@@ -53,4 +52,18 @@ public class Request extends Gateway
 	{
 		return requestParamsClassNames;
 	}
+	
+	/*
+	@Override
+	public <T extends BaseEntity> T toObject(String source)
+	{
+		T object = super.toObject(source);
+		
+		if(object instanceof Request)
+		{
+			return ((Request) object).className.equals(className) ? object : null;
+		}
+		
+		return null;
+	}*/
 }

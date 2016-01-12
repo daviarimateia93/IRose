@@ -3,14 +3,14 @@ package irose.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import irose.util.BaseEntity;
 import me.gerenciar.sdao.annotation.Generated;
 import me.gerenciar.sdao.annotation.Identifier;
 import me.gerenciar.sdao.annotation.TableName;
-import me.gerenciar.sjson.gateway.Gateway;
 import me.gerenciar.stp.gateway.Peer;
 
 @TableName("ACCOUNT")
-public class Account extends Gateway
+public class Account extends BaseEntity
 {
 	private static transient final long serialVersionUID = 712815442503981486L;
 	

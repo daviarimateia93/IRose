@@ -3,13 +3,13 @@ package irose.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import irose.util.BaseEntity;
 import me.gerenciar.sdao.annotation.Group;
 import me.gerenciar.sdao.annotation.Identifier;
 import me.gerenciar.sdao.annotation.TableName;
-import me.gerenciar.sjson.gateway.Gateway;
 
 @TableName("CHARACTER_CHARACTER_SKILL")
-public class CharacterCharacterSkill extends Gateway
+public class CharacterCharacterSkill extends BaseEntity
 {
 	private static transient final long serialVersionUID = 2486495146745972075L;
 	

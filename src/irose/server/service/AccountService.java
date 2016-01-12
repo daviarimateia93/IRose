@@ -44,9 +44,6 @@ public class AccountService
 			}
 		});
 		
-		System.out.println("aki");
-		System.out.println(wrapper.get());
-		
 		return wrapper.get();
 	}
 	

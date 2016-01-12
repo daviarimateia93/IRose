@@ -2,9 +2,9 @@ package irose.entity;
 
 import java.util.Date;
 
-import me.gerenciar.sjson.gateway.Gateway;
+import irose.util.BaseEntity;
 
-public class CharacterEffect extends Gateway
+public class CharacterEffect extends BaseEntity
 {
 	private static transient final long serialVersionUID = -3950889283531756817L;
 	

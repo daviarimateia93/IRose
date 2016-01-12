@@ -1,12 +1,6 @@
 package irose.server;
 
-import irose.entity.Account;
-import irose.server.service.AccountService;
-import irose.server.stp.parser.ServerRequestParser;
-import irose.server.stp.parser.ServerResponseParser;
-import irose.util.Request;
-import irose.util.Response;
-import irose.util.ServiceManager;
+import irose.server.stp.parser.ServerAccountParser;
 import me.gerenciar.stp.gateway.Peer;
 import me.gerenciar.stp.gateway.Server;
 import me.gerenciar.stp.parser.ParserManager;
@@ -20,8 +14,7 @@ public class IRoseServer
 	
 	private IRoseServer()
 	{
-		ParserManager.getInstance().add(ServerRequestParser.getInstance());
-		ParserManager.getInstance().add(ServerResponseParser.getInstance());
+		ParserManager.getInstance().add(new ServerAccountParser());
 		
 		server = new Server()
 		{
@@ -40,17 +33,13 @@ public class IRoseServer
 			@Override
 			protected void onPeerStart(Peer peer)
 			{
+			
 			}
 			
 			@Override
 			protected void onPeerEnd(Peer peer)
 			{
-				Account account = ServiceManager.get(AccountService.class).getByPeer(peer);
-				
-				if(account != null)
-				{
-					ServiceManager.get(AccountService.class).logout(account.getId(), peer);
-				}
+			
 			}
 		};
 	}
@@ -84,15 +73,5 @@ public class IRoseServer
 		{
 			server.end();
 		}
-	}
-	
-	public void write(Peer peer, Request request)
-	{
-		ServerRequestParser.getInstance().write(peer, request);
-	}
-	
-	public void write(Peer peer, Response response)
-	{
-		ServerResponseParser.getInstance().write(peer, response);
 	}
 }

@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import irose.util.BaseEntity;
 import me.gerenciar.sdao.annotation.Generated;
 import me.gerenciar.sdao.annotation.Identifier;
 import me.gerenciar.sdao.annotation.TableName;
-import me.gerenciar.sjson.gateway.Gateway;
 
 @TableName("CHARACTER")
-public class Character extends Gateway
+public class Character extends BaseEntity
 {
 	private static transient final long serialVersionUID = -254460156320452039L;
 	

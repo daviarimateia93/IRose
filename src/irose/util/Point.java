@@ -1,8 +1,6 @@
 package irose.util;
 
-import me.gerenciar.sjson.gateway.Gateway;
-
-public class Point extends Gateway
+public class Point extends BaseEntity
 {
 	private static transient final long serialVersionUID = 6351514818335154730L;
 	

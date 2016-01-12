@@ -6,8 +6,11 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
-import irose.server.stp.parser.ServerResponseParser;
+import me.gerenciar.sjson.parser.Reader;
+import me.gerenciar.sjson.parser.Writer;
+import me.gerenciar.sjson.util.Json;
 import me.gerenciar.stp.gateway.Peer;
 import me.gerenciar.stp.message.Message;
 import me.gerenciar.stp.message.Payload;
@@ -15,21 +18,51 @@ import me.gerenciar.stp.parser.Parser;
 import me.gerenciar.stp.system.STPException;
 import me.gerenciar.stp.system.STPLogger;
 
-public class RequestParser extends Parser
+public abstract class BaseParser extends Parser
 {
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void read(Peer peer, Message message)
 	{
-		read(peer, getRequest(message));
+		Json json = convert(Json.class, message);
+		Map<String, Object> rootMap = (Map<String, Object>) json.get("ROOT");
+		String className = ((String) rootMap.get("__className__")).split("\\;")[1];
+		
+		if(className.endsWith("Request"))
+		{
+			Request request = convert(Request.class, message);
+			
+			handleRead(peer, request);
+			
+			read(peer, request);
+		}
+		else if(className.endsWith("Response"))
+		{
+			Response response = convert(Response.class, message);
+			
+			handleRead(peer, response);
+			
+			read(peer, response);
+		}
 	}
 	
 	@Override
 	protected void written(Peer peer, Message message)
 	{
-		written(peer, getRequest(message));
+		Request request = convert(Request.class, message);
+		Response response = convert(Response.class, message);
+		
+		if(request != null)
+		{
+			written(peer, request);
+		}
+		else if(response != null)
+		{
+			written(peer, response);
+		}
 	}
 	
-	protected void read(Peer peer, Request request)
+	private void handleRead(Peer peer, Request request)
 	{
 		try
 		{
@@ -62,26 +95,27 @@ public class RequestParser extends Parser
 			
 			if(invokeMethod.isAnnotationPresent(Requestable.class))
 			{
-				ServerResponseParser.getInstance().write(peer, new Response(Response.Status.OK, methodWithPeer != null ? methodWithPeer.invoke(ServiceManager.get(type), requestParamsWithPeer.toArray(new Object[requestParamsWithPeer.size()])) : method.invoke(ServiceManager.get(type), request.getRequestParams())));
+				write(peer, new Response(Response.Status.OK, methodWithPeer != null ? methodWithPeer.invoke(ServiceManager.get(type), requestParamsWithPeer.toArray(new Object[requestParamsWithPeer.size()])) : method.invoke(ServiceManager.get(type), request.getRequestParams())));
 			}
 			else
 			{
-				ServerResponseParser.getInstance().write(peer, new Response(Response.Status.ERROR, "Method is not @Requestable"));
+				write(peer, new Response(Response.Status.ERROR, "Method is not @Requestable"));
 			}
 		}
 		catch(ClassNotFoundException | IllegalAccessException | IllegalArgumentException | InvocationTargetException exception)
 		{
-			ServerResponseParser.getInstance().write(peer, new Response(Response.Status.ERROR, exception));
+			write(peer, new Response(Response.Status.ERROR, exception.getMessage()));
 		}
 	}
 	
-	protected void written(Peer peer, Request request)
+	private void handleRead(Peer peer, Response response)
 	{
+	
 	}
 	
-	public void write(Peer peer, Request request)
+	protected void write(Peer peer, Object object)
 	{
-		byte[] payloadContent = request.toString().getBytes();
+		byte[] payloadContent = new Writer().write(object).getBytes();
 		
 		Payload payload = new Payload();
 		payload.setContent(payloadContent);
@@ -103,9 +137,9 @@ public class RequestParser extends Parser
 		}
 	}
 	
-	private Request getRequest(Message message)
+	private <T> T convert(Class<T> type, Message message)
 	{
-		return new Request().toObject(new String(message.getPayload().getContent(), Charset.forName("UTF-8")));
+		return new Reader().read(type, new String(message.getPayload().getContent(), Charset.forName("UTF-8")));
 	}
 	
 	private Method getMethod(Class<?> type, String methodName, Class<?>[] parameterTypes)
@@ -130,9 +164,23 @@ public class RequestParser extends Parser
 		}
 	}
 	
-	@Override
-	public String getType()
+	protected void read(Peer peer, Request request)
 	{
-		return "REQUEST";
+	
+	}
+	
+	protected void written(Peer peer, Request request)
+	{
+	
+	}
+	
+	protected void read(Peer peer, Response response)
+	{
+	
+	}
+	
+	protected void written(Peer peer, Response response)
+	{
+	
 	}
 }

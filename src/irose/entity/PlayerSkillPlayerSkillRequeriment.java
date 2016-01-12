@@ -2,13 +2,13 @@ package irose.entity;
 
 import java.util.List;
 
+import irose.util.BaseEntity;
 import me.gerenciar.sdao.annotation.Group;
 import me.gerenciar.sdao.annotation.Identifier;
 import me.gerenciar.sdao.annotation.TableName;
-import me.gerenciar.sjson.gateway.Gateway;
 
 @TableName("PLAYER_SKILL_PLAYER_SKILL_REQUERIMENT")
-public class PlayerSkillPlayerSkillRequeriment extends Gateway
+public class PlayerSkillPlayerSkillRequeriment extends BaseEntity
 {
 	private static transient final long serialVersionUID = -1904185884922673375L;
 	

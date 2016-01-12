@@ -10,7 +10,7 @@ public class Player extends Character
 {
 	private static transient final long serialVersionUID = 1490945766096913214L;
 	
-	private Account account;
+	private transient Account account;
 	private int attributePoints;
 	private int skillPoints;
 	private CharacterArea respawn;
