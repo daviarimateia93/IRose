@@ -18,7 +18,7 @@ public class Account extends BaseEntity
 	@Generated("ID")
 	private Long id;
 	private String nickname;
-	private String password;
+	private transient String password;
 	private String email;
 	private boolean logged;
 	private List<Player> players = new ArrayList<>();

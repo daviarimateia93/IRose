@@ -139,7 +139,7 @@ public abstract class BaseParser extends Parser
 	
 	private <T> T convert(Class<T> type, Message message)
 	{
-		return new Reader().read(type, new String(message.getPayload().getContent(), Charset.forName("UTF-8")));
+		return new Reader().read(type, new String(message.getPayload().getContent(), Charset.forName(Constants.TEXT_CHARSET_UTF_8)));
 	}
 	
 	private Method getMethod(Class<?> type, String methodName, Class<?>[] parameterTypes)

@@ -1,12 +1,15 @@
 package irose.server.service;
 
+import java.security.MessageDigest;
 import java.util.HashMap;
 import java.util.Map;
 
 import irose.entity.Account;
 import irose.repository.AccountRepository;
+import irose.util.Constants;
 import irose.util.RepositoryManager;
 import irose.util.Requestable;
+import irose.util.StringHelper;
 import me.gerenciar.sdao.factory.DAOFactory.Runnable;
 import me.gerenciar.sdao.factory.DAOFactory.Wrapper;
 import me.gerenciar.stp.gateway.Peer;
@@ -28,7 +31,7 @@ public class AccountService
 			{
 				if(getByPeer(peer) == null)
 				{
-					wrapper.set(RepositoryManager.get(AccountRepository.class).selectByNicknameAndPassword(RepositoryManager.getDAOFactory().getConnection(), nickname, password));
+					wrapper.set(RepositoryManager.get(AccountRepository.class).selectByNicknameAndPassword(RepositoryManager.getDAOFactory().getConnection(), nickname, encryptPassword(password)));
 					
 					if(wrapper.get() != null)
 					{
@@ -75,6 +78,20 @@ public class AccountService
 	public Account getByAccountId(Long accountId)
 	{
 		return connectedAccounts.get(accountId);
+	}
+	
+	public String encryptPassword(String password)
+	{
+		try
+		{
+			MessageDigest sha512 = MessageDigest.getInstance(Constants.TEXT_ALGORITHM_SHA_512);
+			
+			return StringHelper.hex(sha512.digest(password.getBytes()));
+		}
+		catch(Exception exception)
+		{
+			return null;
+		}
 	}
 	
 	private boolean check(Peer peer, Long accountId)
