@@ -8,6 +8,8 @@ import me.gerenciar.stp.parser.ParserPeerKnown;
 
 public class ClientAccountParser extends BaseParser implements ParserPeerKnown
 {
+	private Request loginRequest;
+	
 	@Override
 	public String getType()
 	{
@@ -17,7 +19,9 @@ public class ClientAccountParser extends BaseParser implements ParserPeerKnown
 	@Override
 	public void onPeerStart(Peer peer)
 	{
-		write(peer, new Request("irose.server.service.AccountService", "login", "davi", "123"));
+		loginRequest = new Request("irose.server.service.AccountService", "login", "davi", "123");
+		
+		write(peer, loginRequest);
 	}
 	
 	@Override
@@ -29,7 +33,9 @@ public class ClientAccountParser extends BaseParser implements ParserPeerKnown
 	@Override
 	protected void read(Peer peer, Response response)
 	{
-		System.out.println("READ");
-		System.out.println(response);
+		if(response.isFrom(loginRequest))
+		{
+			System.out.println(response);
+		}
 	}
 }

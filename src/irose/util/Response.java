@@ -9,6 +9,7 @@ public class Response extends BaseEntity
 		OK, ERROR
 	}
 	
+	private String requestId;
 	private Status status;
 	private Object payload;
 	
@@ -17,10 +18,16 @@ public class Response extends BaseEntity
 	
 	}
 	
-	public Response(Status status, Object payload)
+	public Response(Request request, Status status, Object payload)
 	{
+		this.requestId = request.getId();
 		this.status = status;
 		this.payload = payload;
+	}
+	
+	public String getRequestId()
+	{
+		return requestId;
 	}
 	
 	public Status getStatus()
@@ -31,5 +38,15 @@ public class Response extends BaseEntity
 	public Object getPayload()
 	{
 		return payload;
+	}
+	
+	public boolean isFrom(Request request)
+	{
+		if(request == null)
+		{
+			return false;
+		}
+		
+		return request.getId().equals(requestId);
 	}
 }

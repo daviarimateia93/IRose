@@ -18,16 +18,17 @@ public class Character extends BaseEntity
 	@Generated("ID")
 	private Long id;
 	private String name;
-	private Location savedLocation;
 	private int hp;
 	private int mp;
 	private int weight;
 	private int sp;
 	private float hpRecovery;
 	private float mpRecovery;
-	private CharacterStats stats;
+	private CharacterArea area;
 	
 	// non persistent
+	private Location location;
+	private CharacterStats stats;
 	private CharacterStats finalStats;
 	private List<CharacterType> attackableBy = new ArrayList<>();
 	private Character targetCharacter;
@@ -82,16 +83,6 @@ public class Character extends BaseEntity
 	public void setName(String name)
 	{
 		this.name = name;
-	}
-	
-	public Location getSavedLocation()
-	{
-		return savedLocation;
-	}
-	
-	public void setSavedLocation(Location savedLocation)
-	{
-		this.savedLocation = savedLocation;
 	}
 	
 	public int getHp()
@@ -152,6 +143,26 @@ public class Character extends BaseEntity
 	public void setMpRecovery(float mpRecovery)
 	{
 		this.mpRecovery = mpRecovery;
+	}
+	
+	public CharacterArea getArea()
+	{
+		return area;
+	}
+	
+	public void setArea(CharacterArea area)
+	{
+		this.area = area;
+	}
+	
+	public Location getLocation()
+	{
+		return location;
+	}
+	
+	public void setLocation(Location location)
+	{
+		this.location = location;
 	}
 	
 	public CharacterStats getStats()

@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 
 import irose.entity.Account;
-import irose.util.RepositoryManager;
 import me.gerenciar.sdao.dao.jdbc.mysql.MySQLGenericSimpleDAO;
 
 public class AccountRepository extends MySQLGenericSimpleDAO<Account>
@@ -21,7 +20,6 @@ public class AccountRepository extends MySQLGenericSimpleDAO<Account>
 		bean.setPassword(resultSet.getString("PASSWORD"));
 		bean.setEmail(resultSet.getString("EMAIL"));
 		bean.setLogged(resultSet.getBoolean("LOGGED"));
-		bean.setPlayers(RepositoryManager.get(PlayerRepository.class).selectByAccountId(getCurrentConnection(), bean.getId()));
 	}
 	
 	@Override

@@ -2,11 +2,13 @@ package irose.util;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class Request extends BaseEntity
 {
 	private static transient final long serialVersionUID = 6277710972013771070L;
 	
+	private String id;
 	private String requestClassName;
 	private String requestMethodName;
 	private Object[] requestParams;
@@ -14,11 +16,12 @@ public class Request extends BaseEntity
 	
 	public Request()
 	{
-		
+	
 	}
 	
 	public Request(String requestClassName, String requestMethodName, Object... requestParams)
 	{
+		this.id = UUID.randomUUID().toString();
 		this.requestClassName = requestClassName;
 		this.requestMethodName = requestMethodName;
 		this.requestParams = requestParams;
@@ -31,6 +34,11 @@ public class Request extends BaseEntity
 		}
 		
 		this.requestParamsClassNames = requestParamClassNames.toArray(new String[requestParamClassNames.size()]);
+	}
+	
+	public String getId()
+	{
+		return id;
 	}
 	
 	public String getRequestClassName()
@@ -52,18 +60,4 @@ public class Request extends BaseEntity
 	{
 		return requestParamsClassNames;
 	}
-	
-	/*
-	@Override
-	public <T extends BaseEntity> T toObject(String source)
-	{
-		T object = super.toObject(source);
-		
-		if(object instanceof Request)
-		{
-			return ((Request) object).className.equals(className) ? object : null;
-		}
-		
-		return null;
-	}*/
 }

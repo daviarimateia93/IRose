@@ -1,8 +1,5 @@
 package irose.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import irose.util.BaseEntity;
 import me.gerenciar.sdao.annotation.Generated;
 import me.gerenciar.sdao.annotation.Identifier;
@@ -21,7 +18,6 @@ public class Account extends BaseEntity
 	private transient String password;
 	private String email;
 	private boolean logged;
-	private List<Player> players = new ArrayList<>();
 	
 	// non persistent
 	private transient Peer peer;
@@ -74,16 +70,6 @@ public class Account extends BaseEntity
 	public void setLogged(boolean logged)
 	{
 		this.logged = logged;
-	}
-	
-	public List<Player> getPlayers()
-	{
-		return players;
-	}
-	
-	public void setPlayers(List<Player> players)
-	{
-		this.players = players;
 	}
 	
 	public Peer getPeer()

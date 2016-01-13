@@ -107,23 +107,24 @@ public abstract class BaseParser extends Parser
 			Method methodWithPeer = getMethod(type, request.getRequestMethodName(), requestParamClassNamesWithPeer.toArray(new Class<?>[requestParamClassNamesWithPeer.size()]));
 			Method method = getMethod(type, request.getRequestMethodName(), paramsClassNames.toArray(new Class<?>[paramsClassNames.size()]));
 			
-			Method invokeMethod = methodWithPeer != null ? methodWithPeer : method;
-			
 			List<Object> requestParamsWithPeer = new ArrayList<>(Arrays.asList(request.getRequestParams()));
 			requestParamsWithPeer.add(peer);
 			
+			Method invokeMethod = methodWithPeer != null ? methodWithPeer : method;
+			Object[] invokeMethodParams = methodWithPeer != null ? requestParamsWithPeer.toArray(new Object[requestParamsWithPeer.size()]) : request.getRequestParams();
+			
 			if(invokeMethod.isAnnotationPresent(Requestable.class))
 			{
-				write(peer, new Response(Response.Status.OK, methodWithPeer != null ? methodWithPeer.invoke(ServiceManager.get(type), requestParamsWithPeer.toArray(new Object[requestParamsWithPeer.size()])) : method.invoke(ServiceManager.get(type), request.getRequestParams())));
+				write(peer, new Response(request, Response.Status.OK, invokeMethod.invoke(ServiceManager.get(type), invokeMethodParams)));
 			}
 			else
 			{
-				write(peer, new Response(Response.Status.ERROR, "Method is not @Requestable"));
+				write(peer, new Response(request, Response.Status.ERROR, "Method is not @Requestable"));
 			}
 		}
 		catch(ClassNotFoundException | IllegalAccessException | IllegalArgumentException | InvocationTargetException exception)
 		{
-			write(peer, new Response(Response.Status.ERROR, exception.getMessage()));
+			write(peer, new Response(request, Response.Status.ERROR, exception.getMessage()));
 		}
 	}
 	

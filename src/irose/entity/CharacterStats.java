@@ -1,8 +1,6 @@
 package irose.entity;
 
 import irose.util.BaseEntity;
-import me.gerenciar.sdao.annotation.Generated;
-import me.gerenciar.sdao.annotation.Identifier;
 import me.gerenciar.sdao.annotation.TableName;
 
 @TableName("CHARACTER_STATS")
@@ -10,9 +8,7 @@ public class CharacterStats extends BaseEntity
 {
 	private static transient final long serialVersionUID = -4708186494066603226L;
 	
-	@Identifier("ID")
-	@Generated("ID")
-	private Long id;
+	// non persistent
 	private int hpLimit;
 	private int mpLimit;
 	private int weightLimit;
@@ -25,16 +21,6 @@ public class CharacterStats extends BaseEntity
 	private int movementSpeed;
 	private int attackSpeed;
 	private int critical;
-	
-	public Long getId()
-	{
-		return id;
-	}
-	
-	public void setId(Long id)
-	{
-		this.id = id;
-	}
 	
 	public int getHpLimit()
 	{

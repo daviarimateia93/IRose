@@ -3,7 +3,6 @@ package irose.server.stp.parser;
 import irose.entity.Account;
 import irose.server.service.AccountService;
 import irose.util.BaseParser;
-import irose.util.Response;
 import irose.util.ServiceManager;
 import me.gerenciar.stp.gateway.Peer;
 import me.gerenciar.stp.gateway.Server;
@@ -44,12 +43,5 @@ public class ServerAccountParser extends BaseParser implements ParserServerKnown
 		{
 			ServiceManager.get(AccountService.class).logout(account.getId(), peer);
 		}
-	}
-	
-	@Override
-	protected void written(Peer peer, Response response)
-	{
-		System.out.println("WRITTEN");
-		System.out.println(response);
 	}
 }

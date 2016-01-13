@@ -20,14 +20,13 @@ public class CharacterRepository extends MySQLGenericSimpleDAO<Character>
 	{
 		bean.setId(resultSet.getLong("ID"));
 		bean.setName(resultSet.getString("NAME"));
-		bean.setSavedLocation(RepositoryManager.get(LocationRepository.class).selectOne(getCurrentConnection(), resultSet.getLong("ID_LOCATION")));
 		bean.setHp(resultSet.getInt("HP"));
 		bean.setMp(resultSet.getInt("MP"));
 		bean.setWeight(resultSet.getInt("WEIGHT"));
 		bean.setSp(resultSet.getInt("SP"));
 		bean.setHpRecovery(resultSet.getFloat("HP_RECOVERY"));
 		bean.setMpRecovery(resultSet.getFloat("MP_RECOVERY"));
-		bean.setStats(RepositoryManager.get(CharacterStatsRepository.class).selectOne(getCurrentConnection(), resultSet.getLong("ID_CHARACTER_STATS")));
+		bean.setArea(RepositoryManager.get(CharacterAreaRepository.class).selectOne(getCurrentConnection(), resultSet.getLong("ID_CHARACTER_AREA")));
 	}
 	
 	@Override
@@ -36,14 +35,13 @@ public class CharacterRepository extends MySQLGenericSimpleDAO<Character>
 		Map<String, Object> map = new HashMap<>();
 		map.put("ID", bean.getId());
 		map.put("NAME", bean.getName());
-		map.put("ID_LOCATION", bean.getSavedLocation().getId());
 		map.put("HP", bean.getHp());
 		map.put("MP", bean.getMp());
 		map.put("WEIGHT", bean.getWeight());
 		map.put("SP", bean.getSp());
 		map.put("HP_RECOVERY", bean.getHpRecovery());
 		map.put("MP_RECOVERY", bean.getMpRecovery());
-		map.put("ID_CHARACTER_STATS", bean.getStats().getId());
+		map.put("ID_CHARACTER_AREA", bean.getArea());
 		
 		List<Map<String, Object>> maps = new ArrayList<>();
 		maps.add(map);
