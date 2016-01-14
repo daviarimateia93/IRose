@@ -1,6 +1,6 @@
 package irose.client;
 
-import irose.client.stp.parser.ClientAccountParser;
+import irose.client.stp.parser.ClientParser;
 import me.gerenciar.stp.gateway.Peer;
 import me.gerenciar.stp.parser.ParserManager;
 import me.gerenciar.stp.system.STPException;
@@ -13,7 +13,7 @@ public class IRoseClient
 	
 	private IRoseClient()
 	{
-		ParserManager.getInstance().add(new ClientAccountParser());
+		ParserManager.getInstance().add(new ClientParser());
 		
 		peer = new Peer()
 		{

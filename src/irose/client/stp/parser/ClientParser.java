@@ -6,15 +6,9 @@ import irose.util.Response;
 import me.gerenciar.stp.gateway.Peer;
 import me.gerenciar.stp.parser.ParserPeerKnown;
 
-public class ClientAccountParser extends BaseParser implements ParserPeerKnown
+public class ClientParser extends BaseParser implements ParserPeerKnown
 {
 	private Request loginRequest;
-	
-	@Override
-	public String getType()
-	{
-		return "ACCOUNT";
-	}
 	
 	@Override
 	public void onPeerStart(Peer peer)

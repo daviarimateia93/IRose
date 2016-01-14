@@ -8,14 +8,8 @@ import me.gerenciar.stp.gateway.Peer;
 import me.gerenciar.stp.gateway.Server;
 import me.gerenciar.stp.parser.ParserServerKnown;
 
-public class ServerAccountParser extends BaseParser implements ParserServerKnown
+public class ServerParser extends BaseParser implements ParserServerKnown
 {
-	@Override
-	public String getType()
-	{
-		return "ACCOUNT";
-	}
-	
 	@Override
 	public void onServerStart(Server server)
 	{

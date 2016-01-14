@@ -1,6 +1,6 @@
 package irose.server;
 
-import irose.server.stp.parser.ServerAccountParser;
+import irose.server.stp.parser.ServerParser;
 import me.gerenciar.stp.gateway.Peer;
 import me.gerenciar.stp.gateway.Server;
 import me.gerenciar.stp.parser.ParserManager;
@@ -14,7 +14,7 @@ public class IRoseServer
 	
 	private IRoseServer()
 	{
-		ParserManager.getInstance().add(new ServerAccountParser());
+		ParserManager.getInstance().add(new ServerParser());
 		
 		server = new Server()
 		{

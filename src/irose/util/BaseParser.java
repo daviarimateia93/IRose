@@ -203,4 +203,10 @@ public abstract class BaseParser extends Parser
 	{
 	
 	}
+	
+	@Override
+	public String getType()
+	{
+		return "REQUEST_RESPONSE";
+	}
 }
